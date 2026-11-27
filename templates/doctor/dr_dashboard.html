@@ -10,8 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet"
-href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor/dashboard.css') }}">
 
     <!-- Icons -->
     <link rel="stylesheet"
@@ -55,17 +54,17 @@ href="{{ url_for('static', filename='css/dashboard.css') }}">
                 <span class="sidebar-text">Dashboard</span>
             </a>
 
-            <a href="appointments.html" class="menu-item">
+            <a href="dr_appointments.html" class="menu-item">
                 <i class="fa-solid fa-calendar-check"></i>
                 <span class="sidebar-text">Appointments</span>
             </a>
 
-            <a href="patients.html" class="menu-item">
+            <a href="dr_patients.html" class="menu-item">
                 <i class="fa-solid fa-users"></i>
                 <span class="sidebar-text">Patients</span>
             </a>
 
-            <a href="prescriptions.html" class="menu-item">
+            <a href="dr_prescriptions.html" class="menu-item">
                 <i class="fa-solid fa-prescription"></i>
                 <span class="sidebar-text">Prescriptions</span>
             </a>
@@ -449,7 +448,8 @@ href="{{ url_for('static', filename='css/dashboard.css') }}">
 
 </div>
 
-<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<script src="{{ url_for('static', filename='js/doctor/dashboard.js') }}"></script>
+
 
 </body>
 </html>
