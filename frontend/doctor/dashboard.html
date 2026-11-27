@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="bg-gray-50">
+
+<div class="dashboard-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span class="logo-text">MediCare</span>
+            </div>
+
+            <button id="closeSidebar" class="close-sidebar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Doctor Profile -->
+        <div class="doctor-sidebar-profile">
+            <div class="doctor-avatar">DR</div>
+            <div class="doctor-info sidebar-text">
+                <h3>Dr. John Smith</h3>
+                <p>Cardiologist</p>
+            </div>
+        </div>
+
+        <!-- MENU -->
+        <nav class="sidebar-menu">
+
+            <p class="menu-heading sidebar-text">MAIN MENU</p>
+
+            <a href="dashboard.html" class="menu-item active">
+                <i class="fa-solid fa-chart-line"></i>
+                <span class="sidebar-text">Dashboard</span>
+            </a>
+
+            <a href="appointments.html" class="menu-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span class="sidebar-text">Appointments</span>
+            </a>
+
+            <a href="patients.html" class="menu-item">
+                <i class="fa-solid fa-users"></i>
+                <span class="sidebar-text">Patients</span>
+            </a>
+
+            <a href="prescriptions.html" class="menu-item">
+                <i class="fa-solid fa-prescription"></i>
+                <span class="sidebar-text">Prescriptions</span>
+            </a>
+
+            <p class="menu-heading sidebar-text">ACCOUNT</p>
+
+            <a href="#profile" class="menu-item">
+                <i class="fa-solid fa-user-doctor"></i>
+                <span class="sidebar-text">My Profile</span>
+            </a>
+
+            <a href="#availability" class="menu-item">
+                <i class="fa-solid fa-clock"></i>
+                <span class="sidebar-text">Availability</span>
+            </a>
+
+            <a href="#settings" class="menu-item">
+                <i class="fa-solid fa-gear"></i>
+                <span class="sidebar-text">Settings</span>
+            </a>
+
+        </nav>
+
+        <!-- Logout -->
+        <div class="sidebar-bottom">
+            <a href="#" class="menu-item logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="sidebar-text">Logout</span>
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- MOBILE OVERLAY -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main id="mainContent" class="main-content">
+
+        <!-- TOP NAVBAR -->
+        <header class="top-navbar">
+
+            <div class="flex items-center gap-4">
+                <button id="menuToggle" class="menu-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <h2 class="page-title">Dashboard</h2>
+                    <p class="page-subtitle">Welcome back, Dr. John!</p>
+                </div>
+            </div>
+
+            <div class="navbar-right">
+
+                <button class="notification-btn" aria-label="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="navbar-profile">
+                    <div class="small-avatar">DR</div>
+                    <div class="hidden sm:block">
+                        <h4>Dr. John Smith</h4>
+                        <p>Doctor</p>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <div class="content-container">
+
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div>
+                    <h1>Good Morning, Dr. John! 👋</h1>
+                    <p>Here's what's happening with your practice today.</p>
+                </div>
+
+                <div class="date-display">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span id="currentDate">Today</span>
+                </div>
+            </section>
+
+            <!-- STATISTICS -->
+            <section class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon blue">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <span class="stat-label">Total Appointments</span>
+                    </div>
+                    <h2>128</h2>
+                    <p class="stat-description">
+                        <span class="positive">+12%</span> from last month
+                    </p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon green">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <span class="stat-label">Total Patients</span>
+                    </div>
+                    <h2>256</h2>
+                    <p class="stat-description">
+                        <span class="positive">+8%</span> from last month
+                    </p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon purple">
+                            <i class="fa-solid fa-prescription"></i>
+                        </div>
+                        <span class="stat-label">Prescriptions</span>
+                    </div>
+                    <h2>84</h2>
+                    <p class="stat-description">
+                        <span class="positive">+5%</span> from last month
+                    </p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon orange">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <span class="stat-label">Pending Appointments</span>
+                    </div>
+                    <h2>12</h2>
+                    <p class="stat-description">
+                        Awaiting confirmation
+                    </p>
+                </div>
+
+            </section>
+
+            <!-- APPOINTMENTS + PROFILE -->
+            <section class="dashboard-grid">
+
+                <!-- Today's Appointments -->
+                <div class="dashboard-card appointments-card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Today's Appointments</h3>
+                            <p>Manage your upcoming consultations</p>
+                        </div>
+
+                        <a href="appointments.html" class="view-all">
+                            View All <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="appointment-table">
+                            <thead>
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Time</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="patient-cell">
+                                            <div class="patient-avatar avatar-one">AM</div>
+                                            <div>
+                                                <strong>Alex Morgan</strong>
+                                                <small>#PT001</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>09:00 AM</td>
+                                    <td>Consultation</td>
+                                    <td><span class="status confirmed">Confirmed</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="patient-cell">
+                                            <div class="patient-avatar avatar-two">SJ</div>
+                                            <div>
+                                                <strong>Sarah Johnson</strong>
+                                                <small>#PT002</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>10:30 AM</td>
+                                    <td>Follow-up</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="patient-cell">
+                                            <div class="patient-avatar avatar-three">DW</div>
+                                            <div>
+                                                <strong>David Wilson</strong>
+                                                <small>#PT003</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>11:30 AM</td>
+                                    <td>Consultation</td>
+                                    <td><span class="status confirmed">Confirmed</span></td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <div class="patient-cell">
+                                            <div class="patient-avatar avatar-four">EB</div>
+                                            <div>
+                                                <strong>Emily Brown</strong>
+                                                <small>#PT004</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>02:00 PM</td>
+                                    <td>Check-up</td>
+                                    <td><span class="status completed">Completed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <!-- Doctor Profile -->
+                <div class="dashboard-card profile-card" id="profile">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Doctor Profile</h3>
+                            <p>Your professional information</p>
+                        </div>
+                        <i class="fa-solid fa-user-doctor profile-heading-icon"></i>
+                    </div>
+
+                    <div class="profile-details">
+                        <div class="profile-avatar">DR</div>
+
+                        <h3>Dr. John Smith</h3>
+                        <p class="specialization">Cardiologist</p>
+
+                        <span class="doctor-status">
+                            <span></span> Active
+                        </span>
+                    </div>
+
+                    <div class="profile-info">
+
+                        <div class="info-row">
+                            <span><i class="fa-solid fa-id-card"></i> Doctor ID</span>
+                            <strong>DOC001</strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span><i class="fa-solid fa-graduation-cap"></i> Qualification</span>
+                            <strong>MBBS, MD</strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span><i class="fa-solid fa-briefcase"></i> Experience</span>
+                            <strong>10 Years</strong>
+                        </div>
+
+                        <div class="info-row">
+                            <span><i class="fa-solid fa-phone"></i> Phone</span>
+                            <strong>+91 9876543210</strong>
+                        </div>
+
+                    </div>
+
+                    <button class="edit-profile-btn" onclick="alert('Connect this button to your profile page.')">
+                        <i class="fa-solid fa-pen"></i> Edit Profile
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- BOTTOM SECTION -->
+            <section class="bottom-grid">
+
+                <!-- Recent Patients -->
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Recent Patients</h3>
+                            <p>Recently assigned patients</p>
+                        </div>
+
+                        <a href="patients.html" class="view-all">View All</a>
+                    </div>
+
+                    <div class="recent-patient-list">
+
+                        <div class="recent-patient">
+                            <div class="patient-avatar avatar-one">AM</div>
+                            <div class="recent-patient-info">
+                                <strong>Alex Morgan</strong>
+                                <small>Patient ID: PT001</small>
+                            </div>
+                            <span class="patient-date">Today</span>
+                        </div>
+
+                        <div class="recent-patient">
+                            <div class="patient-avatar avatar-two">SJ</div>
+                            <div class="recent-patient-info">
+                                <strong>Sarah Johnson</strong>
+                                <small>Patient ID: PT002</small>
+                            </div>
+                            <span class="patient-date">Today</span>
+                        </div>
+
+                        <div class="recent-patient">
+                            <div class="patient-avatar avatar-three">DW</div>
+                            <div class="recent-patient-info">
+                                <strong>David Wilson</strong>
+                                <small>Patient ID: PT003</small>
+                            </div>
+                            <span class="patient-date">Yesterday</span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Availability -->
+                <div class="dashboard-card availability-card" id="availability">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>My Availability</h3>
+                            <p>Your consultation schedule</p>
+                        </div>
+                        <i class="fa-regular fa-clock profile-heading-icon"></i>
+                    </div>
+
+                    <div class="availability-item">
+                        <span>Monday - Friday</span>
+                        <strong>09:00 AM - 05:00 PM</strong>
+                    </div>
+
+                    <div class="availability-item">
+                        <span>Saturday</span>
+                        <strong>09:00 AM - 01:00 PM</strong>
+                    </div>
+
+                    <div class="availability-item">
+                        <span>Sunday</span>
+                        <strong class="unavailable">Unavailable</strong>
+                    </div>
+
+                    <button class="edit-profile-btn">
+                        <i class="fa-solid fa-pen"></i> Manage Availability
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="dashboard-footer">
+                <p>© 2026 MediCare Doctor Portal. All rights reserved.</p>
+            </footer>
+
+        </div>
+    </main>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+</html>
