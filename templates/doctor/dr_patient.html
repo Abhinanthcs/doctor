@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients - MediCare Doctor Portal</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor/dashboard.css') }}">
+   
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="bg-gray-50" data-page="patients">
+
+<div class="dashboard-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span class="logo-text">MediCare</span>
+            </div>
+
+            <button id="closeSidebar" class="close-sidebar" aria-label="Close Sidebar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Doctor Profile -->
+        <div class="doctor-sidebar-profile">
+            <div class="doctor-avatar">DR</div>
+            <div class="doctor-info sidebar-text">
+                <h3>Dr. John Smith</h3>
+                <p>Cardiologist</p>
+            </div>
+        </div>
+
+        <!-- MENU -->
+        <nav class="sidebar-menu">
+
+            <p class="menu-heading sidebar-text">MAIN MENU</p>
+
+            <a href="{{ url_for('doctor_dashboard') }}" class="menu-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span class="sidebar-text">Dashboard</span>
+            </a>
+            <a href="{{ url_for('doctor_appointments') }}" class="menu-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span class="sidebar-text">Appointments</span>
+            </a>
+            <a href="{{ url_for('doctor_patients') }}" class="menu-item active">
+                <i class="fa-solid fa-users"></i>
+                <span class="sidebar-text">Patients</span>
+            </a>
+            <a href="{{ url_for('doctor_prescriptions') }}" class="menu-item">
+                <i class="fa-solid fa-prescription"></i>
+                <span class="sidebar-text">Prescriptions</span>
+            </a>
+
+            <p class="menu-heading sidebar-text">ACCOUNT</p>
+
+            <a href="{{ url_for('doctor_dashboard') }}#profile" class="menu-item">
+                <i class="fa-solid fa-user-doctor"></i>
+                <span class="sidebar-text">My Profile</span>
+            </a>
+
+            <a href="{{ url_for('doctor_dashboard') }}#availability" class="menu-item">
+                <i class="fa-solid fa-clock"></i>
+                <span class="sidebar-text">Availability</span>
+            </a>
+
+            <a href="#settings" class="menu-item">
+                <i class="fa-solid fa-gear"></i>
+                <span class="sidebar-text">Settings</span>
+            </a>
+
+        </nav>
+
+        <!-- Logout -->
+        <div class="sidebar-bottom">
+            <a href="{{ url_for('logout') }}" class="menu-item logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="sidebar-text">Logout</span>
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- MOBILE OVERLAY -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main id="mainContent" class="main-content">
+
+        <!-- TOP NAVBAR -->
+        <header class="top-navbar">
+
+            <div class="flex items-center gap-4">
+                <button id="menuToggle" class="menu-toggle" aria-label="Toggle Sidebar">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <h2 class="page-title">Patients</h2>
+                    <p class="page-subtitle">Manage patient profiles and clinical records</p>
+                </div>
+            </div>
+
+            <div class="navbar-right">
+
+                <button class="notification-btn" aria-label="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="navbar-profile">
+                    <div class="small-avatar">DR</div>
+                    <div class="hidden sm:block">
+                        <h4>Dr. John Smith</h4>
+                        <p>Doctor</p>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <div class="content-container">
+
+            <!-- Header Banner -->
+            <section class="welcome-section">
+                <div>
+                    <h1>Patient Directory</h1>
+                    <p>View medical records, vitals, and history for your registered patients.</p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="date-display">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span id="currentDate">Today</span>
+                    </div>
+                    <button id="openNewPatientModal" class="btn-primary-action">
+                        <i class="fa-solid fa-user-plus"></i> Register Patient
+                    </button>
+                </div>
+            </section>
+
+            <!-- Patient Stats -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon green"><i class="fa-solid fa-users"></i></div>
+                        <span class="stat-label">Total Patients</span>
+                    </div>
+                    <h2 id="statTotalPatients">6</h2>
+                    <p class="stat-description"><span class="positive">+8%</span> from last month</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon blue"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <span class="stat-label">Active Care</span>
+                    </div>
+                    <h2 id="statActivePatients">3</h2>
+                    <p class="stat-description">Ongoing treatment plans</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon orange"><i class="fa-solid fa-calendar-day"></i></div>
+                        <span class="stat-label">Follow-up Due</span>
+                    </div>
+                    <h2 id="statFollowupPatients">2</h2>
+                    <p class="stat-description">Scheduled this week</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon purple"><i class="fa-solid fa-shield-heart"></i></div>
+                        <span class="stat-label">Recovered / Stable</span>
+                    </div>
+                    <h2 id="statRecoveredPatients">1</h2>
+                    <p class="stat-description">Routine annual monitoring</p>
+                </div>
+            </section>
+
+            <!-- Search & Patients Table -->
+            <section class="dashboard-card">
+                <div class="card-header flex-wrap">
+                    <div>
+                        <h3>Registered Patients</h3>
+                        <p>Click "View Record" to inspect vitals and clinical details</p>
+                    </div>
+
+                    <div class="filter-controls">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="patientSearchInput" placeholder="Search name, ID, condition...">
+                        </div>
+
+                        <select id="patientStatusFilter" class="filter-select">
+                            <option value="ALL">All Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Follow-up">Follow-up</option>
+                            <option value="Recovered">Recovered</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="appointment-table">
+                        <thead>
+                            <tr>
+                                <th>Patient</th>
+                                <th>Age / Gender</th>
+                                <th>Blood Group</th>
+                                <th>Primary Condition</th>
+                                <th>Contact</th>
+                                <th>Last Visit</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patientsTableBody">
+                            <!-- Populated dynamically via dashboard.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="dashboard-footer">
+                <p>© 2026 MediCare Doctor Portal. All rights reserved.</p>
+            </footer>
+        </div>
+    </main>
+
+</div>
+
+
+<!-- Patient Details Modal -->
+<div id="patientDetailModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>Patient Clinical Profile</h3>
+            <button type="button" class="modal-close" data-close-modal="patientDetailModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div id="patientDetailContent" class="patient-modal-body"></div>
+        <div class="modal-footer">
+            <a href="{{ url_for('doctor_prescriptions') }}" class="btn-primary-action">
+                <i class="fa-solid fa-prescription"></i> Write Prescription
+            </a>
+            <button type="button" class="btn-secondary-action" data-close-modal="patientDetailModal">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- Register Patient Modal -->
+<div id="newPatientModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>Register New Patient</h3>
+            <button type="button" class="modal-close" data-close-modal="newPatientModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <form id="newPatientForm" class="modal-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="ptName" required placeholder="e.g., Hannah Abbott">
+                </div>
+                <div class="form-group">
+                    <label>Age *</label>
+                    <input type="number" id="ptAge" required min="1" max="120" placeholder="45">
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select id="ptGender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Blood Group</label>
+                    <select id="ptBlood">
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="text" id="ptPhone" required placeholder="+91 9876500000">
+                </div>
+                <div class="form-group">
+                    <label>Primary Condition *</label>
+                    <input type="text" id="ptCondition" required placeholder="e.g., Hypertension">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary-action" data-close-modal="newPatientModal">Cancel</button>
+                <button type="submit" class="btn-primary-action">Add Patient</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="{{ url_for('static', filename='js/doctor/dashboard.js') }}"></script>
+
+
+</body>
+</html>
