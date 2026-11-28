@@ -1,0 +1,311 @@
+{
+    "doctor": {
+        "id": "DOC001",
+        "name": "Dr. John Smith",
+        "short_name": "Dr. John",
+        "initials": "DR",
+        "specialization": "Cardiologist",
+        "qualification": "MBBS, MD",
+        "experience": "10 Years",
+        "phone": "+91 9876543210",
+        "status": "Active"
+    },
+    "appointments": [
+        {
+            "id": "APT-1001",
+            "patient_id": "PT001",
+            "patient_name": "Alex Morgan",
+            "initials": "AM",
+            "avatar_class": "avatar-one",
+            "age": 42,
+            "gender": "Male",
+            "date": "2026-11-28",
+            "time": "09:00 AM",
+            "type": "Consultation",
+            "reason": "Chest tightness & routine ECG",
+            "status": "Confirmed"
+        },
+        {
+            "id": "APT-1002",
+            "patient_id": "PT002",
+            "patient_name": "Sarah Johnson",
+            "initials": "SJ",
+            "avatar_class": "avatar-two",
+            "age": 35,
+            "gender": "Female",
+            "date": "2026-11-28",
+            "time": "10:30 AM",
+            "type": "Follow-up",
+            "reason": "Blood pressure medication review",
+            "status": "Pending"
+        },
+        {
+            "id": "APT-1003",
+            "patient_id": "PT003",
+            "patient_name": "David Wilson",
+            "initials": "DW",
+            "avatar_class": "avatar-three",
+            "age": 58,
+            "gender": "Male",
+            "date": "2026-11-28",
+            "time": "11:30 AM",
+            "type": "Consultation",
+            "reason": "Palpitations after exercise",
+            "status": "Confirmed"
+        },
+        {
+            "id": "APT-1004",
+            "patient_id": "PT004",
+            "patient_name": "Emily Brown",
+            "initials": "EB",
+            "avatar_class": "avatar-four",
+            "age": 49,
+            "gender": "Female",
+            "date": "2026-11-28",
+            "time": "02:00 PM",
+            "type": "Check-up",
+            "reason": "Annual cardiac screening",
+            "status": "Completed"
+        },
+        {
+            "id": "APT-1005",
+            "patient_id": "PT005",
+            "patient_name": "Michael Chen",
+            "initials": "MC",
+            "avatar_class": "avatar-one",
+            "age": 61,
+            "gender": "Male",
+            "date": "2026-11-29",
+            "time": "09:30 AM",
+            "type": "Follow-up",
+            "reason": "Post-angioplasty 3-month check",
+            "status": "Confirmed"
+        },
+        {
+            "id": "APT-1006",
+            "patient_id": "PT006",
+            "patient_name": "Priya Nair",
+            "initials": "PN",
+            "avatar_class": "avatar-two",
+            "age": 29,
+            "gender": "Female",
+            "date": "2026-11-29",
+            "time": "11:00 AM",
+            "type": "Consultation",
+            "reason": "Shortness of breath evaluation",
+            "status": "Pending"
+        }
+    ],
+    "patients": [
+        {
+            "id": "PT001",
+            "name": "Alex Morgan",
+            "initials": "AM",
+            "avatar_class": "avatar-one",
+            "age": 42,
+            "gender": "Male",
+            "blood_group": "O+",
+            "phone": "+91 9811122233",
+            "email": "alex.morgan@example.com",
+            "condition": "Hypertension",
+            "last_visit": "2026-11-28",
+            "status": "Active",
+            "vitals": {
+                "bp": "138/88 mmHg",
+                "heart_rate": "76 bpm",
+                "weight": "81 kg"
+            }
+        },
+        {
+            "id": "PT002",
+            "name": "Sarah Johnson",
+            "initials": "SJ",
+            "avatar_class": "avatar-two",
+            "age": 35,
+            "gender": "Female",
+            "blood_group": "A+",
+            "phone": "+91 9822233344",
+            "email": "sarah.j@example.com",
+            "condition": "Arrhythmia Monitoring",
+            "last_visit": "2026-11-28",
+            "status": "Follow-up",
+            "vitals": {
+                "bp": "122/80 mmHg",
+                "heart_rate": "84 bpm",
+                "weight": "63 kg"
+            }
+        },
+        {
+            "id": "PT003",
+            "name": "David Wilson",
+            "initials": "DW",
+            "avatar_class": "avatar-three",
+            "age": 58,
+            "gender": "Male",
+            "blood_group": "B+",
+            "phone": "+91 9833344455",
+            "email": "d.wilson@example.com",
+            "condition": "Coronary Artery Disease",
+            "last_visit": "2026-11-27",
+            "status": "Active",
+            "vitals": {
+                "bp": "130/84 mmHg",
+                "heart_rate": "70 bpm",
+                "weight": "78 kg"
+            }
+        },
+        {
+            "id": "PT004",
+            "name": "Emily Brown",
+            "initials": "EB",
+            "avatar_class": "avatar-four",
+            "age": 49,
+            "gender": "Female",
+            "blood_group": "AB+",
+            "phone": "+91 9844455566",
+            "email": "emily.brown@example.com",
+            "condition": "Hyperlipidemia",
+            "last_visit": "2026-11-28",
+            "status": "Recovered",
+            "vitals": {
+                "bp": "118/76 mmHg",
+                "heart_rate": "72 bpm",
+                "weight": "66 kg"
+            }
+        },
+        {
+            "id": "PT005",
+            "name": "Michael Chen",
+            "initials": "MC",
+            "avatar_class": "avatar-one",
+            "age": 61,
+            "gender": "Male",
+            "blood_group": "O-",
+            "phone": "+91 9855566677",
+            "email": "m.chen@example.com",
+            "condition": "Post-Stent Care",
+            "last_visit": "2026-11-20",
+            "status": "Active",
+            "vitals": {
+                "bp": "126/82 mmHg",
+                "heart_rate": "68 bpm",
+                "weight": "74 kg"
+            }
+        },
+        {
+            "id": "PT006",
+            "name": "Priya Nair",
+            "initials": "PN",
+            "avatar_class": "avatar-two",
+            "age": 29,
+            "gender": "Female",
+            "blood_group": "A-",
+            "phone": "+91 9866677788",
+            "email": "priya.nair@example.com",
+            "condition": "Mitral Valve Prolapse",
+            "last_visit": "2026-11-15",
+            "status": "Follow-up",
+            "vitals": {
+                "bp": "114/74 mmHg",
+                "heart_rate": "78 bpm",
+                "weight": "55 kg"
+            }
+        }
+    ],
+    "prescriptions": [
+        {
+            "id": "RX-2026-084",
+            "patient_id": "PT001",
+            "patient_name": "Alex Morgan",
+            "initials": "AM",
+            "avatar_class": "avatar-one",
+            "date": "2026-11-28",
+            "diagnosis": "Stage 1 Essential Hypertension",
+            "status": "Issued",
+            "notes": "Low sodium diet, 30 mins brisk walking daily. Recheck BP in 2 weeks.",
+            "medicines": [
+                {
+                    "name": "Telmisartan 40mg",
+                    "dosage": "1-0-0",
+                    "duration": "30 Days",
+                    "instruction": "After breakfast"
+                },
+                {
+                    "name": "Aspirin 75mg",
+                    "dosage": "0-1-0",
+                    "duration": "30 Days",
+                    "instruction": "After lunch"
+                }
+            ]
+        },
+        {
+            "id": "RX-2026-083",
+            "patient_id": "PT004",
+            "patient_name": "Emily Brown",
+            "initials": "EB",
+            "avatar_class": "avatar-four",
+            "date": "2026-11-28",
+            "diagnosis": "Mixed Hyperlipidemia",
+            "status": "Issued",
+            "notes": "Avoid saturated fats. Repeat lipid profile after 60 days.",
+            "medicines": [
+                {
+                    "name": "Atorvastatin 20mg",
+                    "dosage": "0-0-1",
+                    "duration": "60 Days",
+                    "instruction": "At bedtime"
+                }
+            ]
+        },
+        {
+            "id": "RX-2026-082",
+            "patient_id": "PT003",
+            "patient_name": "David Wilson",
+            "initials": "DW",
+            "avatar_class": "avatar-three",
+            "date": "2026-11-27",
+            "diagnosis": "Stable Angina / CAD",
+            "status": "Issued",
+            "notes": "Keep sublingual nitroglycerin handy during exertion.",
+            "medicines": [
+                {
+                    "name": "Metoprolol Succinate 25mg",
+                    "dosage": "1-0-0",
+                    "duration": "30 Days",
+                    "instruction": "Before breakfast"
+                },
+                {
+                    "name": "Clopidogrel 75mg",
+                    "dosage": "0-1-0",
+                    "duration": "30 Days",
+                    "instruction": "After lunch"
+                },
+                {
+                    "name": "Rosuvastatin 10mg",
+                    "dosage": "0-0-1",
+                    "duration": "30 Days",
+                    "instruction": "After dinner"
+                }
+            ]
+        },
+        {
+            "id": "RX-2026-081",
+            "patient_id": "PT002",
+            "patient_name": "Sarah Johnson",
+            "initials": "SJ",
+            "avatar_class": "avatar-two",
+            "date": "2026-11-25",
+            "diagnosis": "Benign Sinus Tachycardia",
+            "status": "Draft",
+            "notes": "Limit caffeine intake and ensure proper hydration.",
+            "medicines": [
+                {
+                    "name": "Propranolol 10mg",
+                    "dosage": "1-0-1",
+                    "duration": "15 Days",
+                    "instruction": "After meals"
+                }
+            ]
+        }
+    ]
+}

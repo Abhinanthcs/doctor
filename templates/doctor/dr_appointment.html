@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments - MediCare Doctor Portal</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor/dashboard.css') }}">
+    
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="bg-gray-50" data-page="appointments">
+
+<div class="dashboard-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span class="logo-text">MediCare</span>
+            </div>
+
+            <button id="closeSidebar" class="close-sidebar" aria-label="Close Sidebar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Doctor Profile -->
+        <div class="doctor-sidebar-profile">
+            <div class="doctor-avatar">DR</div>
+            <div class="doctor-info sidebar-text">
+                <h3>Dr. John Smith</h3>
+                <p>Cardiologist</p>
+            </div>
+        </div>
+
+        <!-- MENU -->
+        <nav class="sidebar-menu">
+
+            <p class="menu-heading sidebar-text">MAIN MENU</p>
+
+            <a href="{{ url_for('doctor_dashboard') }}" class="menu-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span class="sidebar-text">Dashboard</span>
+            </a>
+            <a href="{{ url_for('doctor_appointments') }}" class="menu-item active">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span class="sidebar-text">Appointments</span>
+            </a>
+            <a href="{{ url_for('doctor_patients') }}" class="menu-item">
+                <i class="fa-solid fa-users"></i>
+                <span class="sidebar-text">Patients</span>
+            </a>
+            <a href="{{ url_for('doctor_prescriptions') }}" class="menu-item">
+                <i class="fa-solid fa-prescription"></i>
+                <span class="sidebar-text">Prescriptions</span>
+            </a>
+
+            <p class="menu-heading sidebar-text">ACCOUNT</p>
+
+            <a href="{{ url_for('doctor_dashboard') }}#profile" class="menu-item">
+                <i class="fa-solid fa-user-doctor"></i>
+                <span class="sidebar-text">My Profile</span>
+            </a>
+
+            <a href="{{ url_for('doctor_dashboard') }}#availability" class="menu-item">
+                <i class="fa-solid fa-clock"></i>
+                <span class="sidebar-text">Availability</span>
+            </a>
+
+            <a href="#settings" class="menu-item">
+                <i class="fa-solid fa-gear"></i>
+                <span class="sidebar-text">Settings</span>
+            </a>
+
+        </nav>
+
+        <!-- Logout -->
+        <div class="sidebar-bottom">
+            <a href="{{ url_for('logout') }}" class="menu-item logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="sidebar-text">Logout</span>
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- MOBILE OVERLAY -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main id="mainContent" class="main-content">
+
+        <!-- TOP NAVBAR -->
+        <header class="top-navbar">
+
+            <div class="flex items-center gap-4">
+                <button id="menuToggle" class="menu-toggle" aria-label="Toggle Sidebar">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <h2 class="page-title">Appointments</h2>
+                    <p class="page-subtitle">Manage your consultation schedule</p>
+                </div>
+            </div>
+
+            <div class="navbar-right">
+
+                <button class="notification-btn" aria-label="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="navbar-profile">
+                    <div class="small-avatar">DR</div>
+                    <div class="hidden sm:block">
+                        <h4>Dr. John Smith</h4>
+                        <p>Doctor</p>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <div class="content-container">
+
+            <!-- Header Banner -->
+            <section class="welcome-section">
+                <div>
+                    <h1>Appointments Schedule</h1>
+                    <p>Manage, confirm, or reschedule patient consultations.</p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="date-display">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span id="currentDate">Today</span>
+                    </div>
+                    <button id="openNewAppointmentModal" class="btn-primary-action">
+                        <i class="fa-solid fa-plus"></i> New Appointment
+                    </button>
+                </div>
+            </section>
+
+            <!-- Summary Stats -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon blue"><i class="fa-solid fa-calendar-days"></i></div>
+                        <span class="stat-label">Total Scheduled</span>
+                    </div>
+                    <h2 id="statTotalApt">6</h2>
+                    <p class="stat-description">Across this week</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon green"><i class="fa-solid fa-circle-check"></i></div>
+                        <span class="stat-label">Confirmed</span>
+                    </div>
+                    <h2 id="statConfirmedApt">3</h2>
+                    <p class="stat-description">Ready for consultation</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon orange"><i class="fa-solid fa-hourglass-half"></i></div>
+                        <span class="stat-label">Pending Approval</span>
+                    </div>
+                    <h2 id="statPendingApt">2</h2>
+                    <p class="stat-description">Awaiting confirmation</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon purple"><i class="fa-solid fa-check-double"></i></div>
+                        <span class="stat-label">Completed</span>
+                    </div>
+                    <h2 id="statCompletedApt">1</h2>
+                    <p class="stat-description">Consultations finished</p>
+                </div>
+            </section>
+
+            <!-- Filter & Appointments Table -->
+            <section class="dashboard-card">
+                <div class="card-header flex-wrap">
+                    <div>
+                        <h3>All Appointments</h3>
+                        <p>Filter by status or search by patient name / ID</p>
+                    </div>
+
+                    <div class="filter-controls">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="aptSearchInput" placeholder="Search patient or ID...">
+                        </div>
+
+                        <select id="aptStatusFilter" class="filter-select">
+                            <option value="ALL">All Status</option>
+                            <option value="Confirmed">Confirmed</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="appointment-table">
+                        <thead>
+                            <tr>
+                                <th>Apt ID</th>
+                                <th>Patient</th>
+                                <th>Date & Time</th>
+                                <th>Type</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointmentsTableBody">
+                            <!-- Populated dynamically via dashboard.js from static/data/doctor_portal_data.json -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="dashboard-footer">
+                <p>© 2026 MediCare Doctor Portal. All rights reserved.</p>
+            </footer>
+        </div>
+    </main>
+
+</div>
+
+
+<!-- New Appointment Modal -->
+<div id="appointmentModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>Schedule New Appointment</h3>
+            <button type="button" class="modal-close" data-close-modal="appointmentModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <form id="newAppointmentForm" class="modal-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Patient Name *</label>
+                    <input type="text" id="aptPatientName" required placeholder="e.g., Robert Taylor">
+                </div>
+                <div class="form-group">
+                    <label>Patient ID *</label>
+                    <input type="text" id="aptPatientId" required placeholder="e.g., PT007">
+                </div>
+                <div class="form-group">
+                    <label>Date *</label>
+                    <input type="date" id="aptDate" required value="2026-11-28">
+                </div>
+                <div class="form-group">
+                    <label>Time *</label>
+                    <input type="text" id="aptTime" required placeholder="e.g., 03:30 PM">
+                </div>
+                <div class="form-group">
+                    <label>Consultation Type</label>
+                    <select id="aptType">
+                        <option value="Consultation">Consultation</option>
+                        <option value="Follow-up">Follow-up</option>
+                        <option value="Check-up">Check-up</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Initial Status</label>
+                    <select id="aptStatus">
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="Pending">Pending</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <label>Reason / Symptoms</label>
+                <input type="text" id="aptReason" placeholder="Brief note on consultation purpose">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary-action" data-close-modal="appointmentModal">Cancel</button>
+                <button type="submit" class="btn-primary-action">Save Appointment</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="{{ url_for('static', filename='js/doctor/dashboard.js') }}"></script>
+
+
+</body>
+</html>

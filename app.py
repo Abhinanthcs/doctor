@@ -40,7 +40,7 @@ def doctor_dashboard():
 
 @app.route("/doctor/appointments")
 def doctor_appointments():
-    return render_template("doctor/dr_appoinment.html")
+    return render_template("doctor/dr_appointment.html")
 
 
 @app.route("/doctor/patients")
@@ -51,6 +51,34 @@ def doctor_patients():
 @app.route("/doctor/prescriptions")
 def doctor_prescriptions():
     return render_template("doctor/dr_prescription.html")
+
+
+# Aliases & redirects for legacy or direct .html links
+@app.route("/doctor/dashboard.html")
+@app.route("/doctor/dr_dashboard.html")
+def doctor_dashboard_redirect():
+    return redirect(url_for("doctor_dashboard"))
+
+
+@app.route("/doctor/dr_appointment.html")
+@app.route("/doctor/dr_appointments.html")
+@app.route("/doctor/appointments.html")
+def doctor_appointments_redirect():
+    return redirect(url_for("doctor_appointments"))
+
+
+@app.route("/doctor/dr_patient.html")
+@app.route("/doctor/dr_patients.html")
+@app.route("/doctor/patients.html")
+def doctor_patients_redirect():
+    return redirect(url_for("doctor_patients"))
+
+
+@app.route("/doctor/dr_prescription.html")
+@app.route("/doctor/dr_prescriptions.html")
+@app.route("/doctor/prescriptions.html")
+def doctor_prescriptions_redirect():
+    return redirect(url_for("doctor_prescriptions"))
 
 
 # ----------------------------------------------------

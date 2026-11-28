@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescriptions - MediCare Doctor Portal</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor/dashboard.css') }}">
+    
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="bg-gray-50" data-page="prescriptions">
+
+<div class="dashboard-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar">
+
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span class="logo-text">MediCare</span>
+            </div>
+
+            <button id="closeSidebar" class="close-sidebar" aria-label="Close Sidebar">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Doctor Profile -->
+        <div class="doctor-sidebar-profile">
+            <div class="doctor-avatar">DR</div>
+            <div class="doctor-info sidebar-text">
+                <h3>Dr. John Smith</h3>
+                <p>Cardiologist</p>
+            </div>
+        </div>
+
+        <!-- MENU -->
+        <nav class="sidebar-menu">
+
+            <p class="menu-heading sidebar-text">MAIN MENU</p>
+
+            <a href="{{ url_for('doctor_dashboard') }}" class="menu-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span class="sidebar-text">Dashboard</span>
+            </a>
+            <a href="{{ url_for('doctor_appointments') }}" class="menu-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span class="sidebar-text">Appointments</span>
+            </a>
+            <a href="{{ url_for('doctor_patients') }}" class="menu-item">
+                <i class="fa-solid fa-users"></i>
+                <span class="sidebar-text">Patients</span>
+            </a>
+            <a href="{{ url_for('doctor_prescriptions') }}" class="menu-item active">
+                <i class="fa-solid fa-prescription"></i>
+                <span class="sidebar-text">Prescriptions</span>
+            </a>
+
+            <p class="menu-heading sidebar-text">ACCOUNT</p>
+
+            <a href="{{ url_for('doctor_dashboard') }}#profile" class="menu-item">
+                <i class="fa-solid fa-user-doctor"></i>
+                <span class="sidebar-text">My Profile</span>
+            </a>
+
+            <a href="{{ url_for('doctor_dashboard') }}#availability" class="menu-item">
+                <i class="fa-solid fa-clock"></i>
+                <span class="sidebar-text">Availability</span>
+            </a>
+
+            <a href="#settings" class="menu-item">
+                <i class="fa-solid fa-gear"></i>
+                <span class="sidebar-text">Settings</span>
+            </a>
+
+        </nav>
+
+        <!-- Logout -->
+        <div class="sidebar-bottom">
+            <a href="{{ url_for('logout') }}" class="menu-item logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span class="sidebar-text">Logout</span>
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- MOBILE OVERLAY -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <!-- MAIN CONTENT -->
+    <main id="mainContent" class="main-content">
+
+        <!-- TOP NAVBAR -->
+        <header class="top-navbar">
+
+            <div class="flex items-center gap-4">
+                <button id="menuToggle" class="menu-toggle" aria-label="Toggle Sidebar">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <h2 class="page-title">Prescriptions</h2>
+                    <p class="page-subtitle">Create and manage patient prescriptions</p>
+                </div>
+            </div>
+
+            <div class="navbar-right">
+
+                <button class="notification-btn" aria-label="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </button>
+
+                <div class="navbar-profile">
+                    <div class="small-avatar">DR</div>
+                    <div class="hidden sm:block">
+                        <h4>Dr. John Smith</h4>
+                        <p>Doctor</p>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- PAGE CONTENT -->
+        <div class="content-container">
+
+            <!-- Header Banner -->
+            <section class="welcome-section">
+                <div>
+                    <h1>Prescriptions & Medications</h1>
+                    <p>Issue digital prescriptions, manage dosages, and review patient medication history.</p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3">
+                    <div class="date-display">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span id="currentDate">Today</span>
+                    </div>
+                    <button id="openNewRxModal" class="btn-primary-action">
+                        <i class="fa-solid fa-file-prescription"></i> Write Prescription
+                    </button>
+                </div>
+            </section>
+
+            <!-- Prescription Stats -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon purple"><i class="fa-solid fa-prescription"></i></div>
+                        <span class="stat-label">Total Prescriptions</span>
+                    </div>
+                    <h2 id="statTotalRx">4</h2>
+                    <p class="stat-description"><span class="positive">+5%</span> from last month</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon green"><i class="fa-solid fa-file-circle-check"></i></div>
+                        <span class="stat-label">Issued Today</span>
+                    </div>
+                    <h2 id="statIssuedTodayRx">2</h2>
+                    <p class="stat-description">Sent to patient portal</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon orange"><i class="fa-solid fa-pen-to-square"></i></div>
+                        <span class="stat-label">Pending Drafts</span>
+                    </div>
+                    <h2 id="statDraftRx">1</h2>
+                    <p class="stat-description">Awaiting final sign-off</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <div class="stat-icon blue"><i class="fa-solid fa-pills"></i></div>
+                        <span class="stat-label">Active Medications</span>
+                    </div>
+                    <h2 id="statTotalMeds">7</h2>
+                    <p class="stat-description">Prescribed items tracked</p>
+                </div>
+            </section>
+
+            <!-- Prescriptions Table -->
+            <section class="dashboard-card">
+                <div class="card-header flex-wrap">
+                    <div>
+                        <h3>Issued Prescriptions</h3>
+                        <p>Search by Rx ID, patient name, or diagnosis</p>
+                    </div>
+
+                    <div class="filter-controls">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="rxSearchInput" placeholder="Search Rx ID, patient, diagnosis...">
+                        </div>
+
+                        <select id="rxStatusFilter" class="filter-select">
+                            <option value="ALL">All Status</option>
+                            <option value="Issued">Issued</option>
+                            <option value="Draft">Draft</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="appointment-table">
+                        <thead>
+                            <tr>
+                                <th>Rx ID</th>
+                                <th>Patient</th>
+                                <th>Date</th>
+                                <th>Diagnosis</th>
+                                <th>Medications</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="prescriptionsTableBody">
+                            <!-- Populated dynamically via dashboard.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+            <!-- FOOTER -->
+            <footer class="dashboard-footer">
+                <p>© 2026 MediCare Doctor Portal. All rights reserved.</p>
+            </footer>
+        </div>
+    </main>
+
+</div>
+
+
+<!-- View Prescription Modal -->
+<div id="viewRxModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>Digital Prescription Slip</h3>
+            <button type="button" class="modal-close" data-close-modal="viewRxModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <div id="viewRxContent" class="rx-slip-body"></div>
+        <div class="modal-footer">
+            <button type="button" class="btn-secondary-action" onclick="window.print()">
+                <i class="fa-solid fa-print"></i> Print Slip
+            </button>
+            <button type="button" class="btn-primary-action" data-close-modal="viewRxModal">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- Create Prescription Modal -->
+<div id="newRxModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3>Create New Prescription</h3>
+            <button type="button" class="modal-close" data-close-modal="newRxModal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <form id="newRxForm" class="modal-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Select Patient *</label>
+                    <select id="rxPatientSelect" required>
+                        <option value="PT001|Alex Morgan">Alex Morgan (#PT001)</option>
+                        <option value="PT002|Sarah Johnson">Sarah Johnson (#PT002)</option>
+                        <option value="PT003|David Wilson">David Wilson (#PT003)</option>
+                        <option value="PT004|Emily Brown">Emily Brown (#PT004)</option>
+                        <option value="PT005|Michael Chen">Michael Chen (#PT005)</option>
+                        <option value="PT006|Priya Nair">Priya Nair (#PT006)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Diagnosis *</label>
+                    <input type="text" id="rxDiagnosis" required placeholder="e.g., Essential Hypertension">
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <div class="flex items-center justify-between mb-2">
+                    <label class="text-xs font-semibold text-gray-700">Medications *</label>
+                    <button type="button" id="addMedRowBtn" class="text-xs font-semibold text-blue-700 hover:underline">
+                        + Add Another Medicine
+                    </button>
+                </div>
+                <div id="medRowsContainer" class="space-y-2">
+                    <div class="med-input-row">
+                        <input type="text" class="med-name" required placeholder="Medicine (e.g., Telmisartan 40mg)">
+                        <input type="text" class="med-dosage" required placeholder="Dosage (1-0-1)">
+                        <input type="text" class="med-duration" required placeholder="Duration (30 Days)">
+                        <input type="text" class="med-instruction" placeholder="After meal">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <label>Doctor Notes & Advice</label>
+                <input type="text" id="rxNotes" placeholder="Lifestyle advice or follow-up instructions">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary-action" data-close-modal="newRxModal">Cancel</button>
+                <button type="submit" class="btn-primary-action">Issue Prescription</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="{{ url_for('static', filename='js/doctor/dashboard.js') }}"></script>
+
+
+</body>
+</html>

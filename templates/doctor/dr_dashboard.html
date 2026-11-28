@@ -49,22 +49,22 @@
 
             <p class="menu-heading sidebar-text">MAIN MENU</p>
 
-            <a href="dashboard.html" class="menu-item active">
+            <a href="{{ url_for('doctor_dashboard') }}" class="menu-item active">
                 <i class="fa-solid fa-chart-line"></i>
                 <span class="sidebar-text">Dashboard</span>
             </a>
 
-            <a href="dr_appointments.html" class="menu-item">
+            <a href="{{ url_for('doctor_appointments') }}" class="menu-item">
                 <i class="fa-solid fa-calendar-check"></i>
                 <span class="sidebar-text">Appointments</span>
             </a>
 
-            <a href="dr_patients.html" class="menu-item">
+            <a href="{{ url_for('doctor_patients') }}" class="menu-item">
                 <i class="fa-solid fa-users"></i>
                 <span class="sidebar-text">Patients</span>
             </a>
 
-            <a href="dr_prescriptions.html" class="menu-item">
+            <a href="{{ url_for('doctor_prescriptions') }}" class="menu-item">
                 <i class="fa-solid fa-prescription"></i>
                 <span class="sidebar-text">Prescriptions</span>
             </a>
@@ -90,7 +90,7 @@
 
         <!-- Logout -->
         <div class="sidebar-bottom">
-            <a href="#" class="menu-item logout">
+            <a href="{{ url_for('logout') }}" class="menu-item logout">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <span class="sidebar-text">Logout</span>
             </a>
@@ -221,7 +221,7 @@
                             <p>Manage your upcoming consultations</p>
                         </div>
 
-                        <a href="appointments.html" class="view-all">
+                        <a href="{{ url_for('doctor_appointments') }}" class="view-all">
                             View All <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
@@ -369,7 +369,7 @@
                             <p>Recently assigned patients</p>
                         </div>
 
-                        <a href="patients.html" class="view-all">View All</a>
+                        <a href="{{ url_for('doctor_patients') }}" class="view-all">View All</a>
                     </div>
 
                     <div class="recent-patient-list">
