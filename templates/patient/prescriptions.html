@@ -1,0 +1,352 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Prescriptions | HealthCare+</title>
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/prescription.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <h2>HealthCare+</h2>
+            <p>Care Today, Health Forever</p>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="dashboard.html">
+                <i class="fa-solid fa-house"></i> Dashboard
+            </a>
+
+            <a href="doctor.html">
+                <i class="fa-solid fa-stethoscope"></i> Find Doctors
+            </a>
+
+            <a href="appointment.html">
+                <i class="fa-solid fa-calendar-days"></i> My Appointments
+            </a>
+
+            <a href="prescription.html" class="active">
+                <i class="fa-solid fa-pills"></i> My Prescriptions
+            </a>
+
+            <a href="history.html">
+                <i class="fa-solid fa-file-lines"></i> Medical History
+            </a>
+
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i> My Profile
+            </a>
+
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search doctors...">
+            </div>
+
+            <div class="topbar-right">
+                <div class="notification">
+                    <i class="fa-regular fa-bell"></i>
+                    <span>2</span>
+                </div>
+
+                <div class="user-profile">
+                    <img src="https://i.pravatar.cc/100?img=12"
+                         alt="User">
+                    <span>John Doe</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- PAGE HEADING -->
+        <div class="page-heading">
+            <h1>My Prescriptions</h1>
+            <p>View and manage your prescription records.</p>
+        </div>
+
+        <!-- SUMMARY -->
+        <section class="prescription-stats">
+
+            <div class="prescription-stat">
+                <div class="prescription-stat-icon blue">
+                    <i class="fa-solid fa-file-medical"></i>
+                </div>
+                <div>
+                    <p>Total Prescriptions</p>
+                    <h2>5</h2>
+                </div>
+            </div>
+
+            <div class="prescription-stat">
+                <div class="prescription-stat-icon green">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div>
+                    <p>Completed</p>
+                    <h2>4</h2>
+                </div>
+            </div>
+
+            <div class="prescription-stat">
+                <div class="prescription-stat-icon orange">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+                <div>
+                    <p>Active</p>
+                    <h2>1</h2>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- SEARCH -->
+        <section class="prescription-toolbar">
+            <div class="prescription-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text"
+                       id="prescriptionSearch"
+                       placeholder="Search doctor or diagnosis...">
+            </div>
+
+            <select id="prescriptionFilter">
+                <option value="all">All Prescriptions</option>
+                <option value="active">Active</option>
+                <option value="completed">Completed</option>
+            </select>
+        </section>
+
+        <!-- PRESCRIPTION LIST -->
+        <section class="prescription-list">
+
+            <!-- PRESCRIPTION 1 -->
+            <article class="prescription-record"
+                     data-status="completed"
+                     data-search="rahul sharma common cold paracetamol cetirizine">
+
+                <div class="prescription-record-header">
+
+                    <div class="prescription-doctor">
+                        <div class="prescription-doctor-icon">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+
+                        <div>
+                            <h3>Dr. Rahul Sharma</h3>
+                            <p>General Physician</p>
+                        </div>
+                    </div>
+
+                    <span class="status completed">Completed</span>
+
+                </div>
+
+                <div class="prescription-record-details">
+
+                    <div>
+                        <span class="detail-label">Prescription Date</span>
+                        <p><i class="fa-regular fa-calendar"></i>
+                            28 Nov 2026</p>
+                    </div>
+
+                    <div>
+                        <span class="detail-label">Diagnosis</span>
+                        <p>Common Cold</p>
+                    </div>
+
+                </div>
+
+                <div class="medicine-section">
+                    <h4><i class="fa-solid fa-pills"></i> Medicines</h4>
+
+                    <div class="medicine-item">
+                        <div>
+                            <h5>Paracetamol</h5>
+                            <p>500 mg · As prescribed</p>
+                        </div>
+                    </div>
+
+                    <div class="medicine-item">
+                        <div>
+                            <h5>Cetirizine</h5>
+                            <p>As prescribed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prescription-actions">
+                    <button onclick="viewPrescriptionDetails('Rahul Sharma')">
+                        <i class="fa-solid fa-eye"></i> View Details
+                    </button>
+
+                    <button class="download-prescription"
+                            onclick="downloadPrescriptionRecord('Rahul Sharma')">
+                        <i class="fa-solid fa-download"></i> Download
+                    </button>
+                </div>
+
+            </article>
+
+
+            <!-- PRESCRIPTION 2 -->
+            <article class="prescription-record"
+                     data-status="active"
+                     data-search="priya sharma vitamin prescription">
+
+                <div class="prescription-record-header">
+
+                    <div class="prescription-doctor">
+                        <div class="prescription-doctor-icon">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+
+                        <div>
+                            <h3>Dr. Priya Sharma</h3>
+                            <p>General Physician</p>
+                        </div>
+                    </div>
+
+                    <span class="status upcoming">Active</span>
+
+                </div>
+
+                <div class="prescription-record-details">
+
+                    <div>
+                        <span class="detail-label">Prescription Date</span>
+                        <p><i class="fa-regular fa-calendar"></i>
+                            25 Nov 2026</p>
+                    </div>
+
+                    <div>
+                        <span class="detail-label">Diagnosis</span>
+                        <p>Vitamin Deficiency</p>
+                    </div>
+
+                </div>
+
+                <div class="medicine-section">
+                    <h4><i class="fa-solid fa-pills"></i> Medicines</h4>
+
+                    <div class="medicine-item">
+                        <div>
+                            <h5>Vitamin Supplement</h5>
+                            <p>As prescribed by doctor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prescription-actions">
+                    <button onclick="viewPrescriptionDetails('Priya Sharma')">
+                        <i class="fa-solid fa-eye"></i> View Details
+                    </button>
+
+                    <button class="download-prescription"
+                            onclick="downloadPrescriptionRecord('Priya Sharma')">
+                        <i class="fa-solid fa-download"></i> Download
+                    </button>
+                </div>
+
+            </article>
+
+
+            <!-- PRESCRIPTION 3 -->
+            <article class="prescription-record"
+                     data-status="completed"
+                     data-search="anjali nair skin allergy prescription">
+
+                <div class="prescription-record-header">
+
+                    <div class="prescription-doctor">
+                        <div class="prescription-doctor-icon">
+                            <i class="fa-solid fa-user-doctor"></i>
+                        </div>
+
+                        <div>
+                            <h3>Dr. Anjali Nair</h3>
+                            <p>Dermatologist</p>
+                        </div>
+                    </div>
+
+                    <span class="status completed">Completed</span>
+
+                </div>
+
+                <div class="prescription-record-details">
+
+                    <div>
+                        <span class="detail-label">Prescription Date</span>
+                        <p><i class="fa-regular fa-calendar"></i>
+                            18 Nov 2026</p>
+                    </div>
+
+                    <div>
+                        <span class="detail-label">Diagnosis</span>
+                        <p>Skin Allergy</p>
+                    </div>
+
+                </div>
+
+                <div class="medicine-section">
+                    <h4><i class="fa-solid fa-pills"></i> Medicines</h4>
+
+                    <div class="medicine-item">
+                        <div>
+                            <h5>Allergy Treatment</h5>
+                            <p>As prescribed by doctor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prescription-actions">
+                    <button onclick="viewPrescriptionDetails('Anjali Nair')">
+                        <i class="fa-solid fa-eye"></i> View Details
+                    </button>
+
+                    <button class="download-prescription"
+                            onclick="downloadPrescriptionRecord('Anjali Nair')">
+                        <i class="fa-solid fa-download"></i> Download
+                    </button>
+                </div>
+
+            </article>
+
+            <p class="prescription-empty" id="prescriptionEmpty">
+                No prescriptions found.
+            </p>
+
+        </section>
+
+    </main>
+</div>
+
+<script src="../static/js/script.js"></script>
+<script src="../static/js/prescription.js"></script>
+
+</body>
+</html>
+```
