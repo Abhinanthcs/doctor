@@ -1,0 +1,347 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Appointments | HealthCare+</title>
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/appointment.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <h2>HealthCare+</h2>
+            <p>Care Today, Health Forever</p>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="dashboard.html">
+                <i class="fa-solid fa-house"></i> Dashboard
+            </a>
+
+            <a href="doctor.html">
+                <i class="fa-solid fa-stethoscope"></i> Find Doctors
+            </a>
+
+            <a href="appointment.html" class="active">
+                <i class="fa-solid fa-calendar-days"></i> My Appointments
+            </a>
+
+            <a href="prescription.html">
+                <i class="fa-solid fa-pills"></i> My Prescriptions
+            </a>
+
+            <a href="history.html">
+                <i class="fa-solid fa-file-lines"></i> Medical History
+            </a>
+
+            <a href="profile.html">
+                <i class="fa-solid fa-user"></i> My Profile
+            </a>
+
+            <a href="settings.html">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search doctors...">
+            </div>
+
+            <div class="topbar-right">
+                <div class="notification">
+                    <i class="fa-regular fa-bell"></i>
+                    <span>2</span>
+                </div>
+
+                <div class="user-profile">
+                    <img src="https://i.pravatar.cc/100?img=12" alt="User">
+                    <span>John Doe</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- PAGE HEADING -->
+        <div class="page-heading">
+            <h1>My Appointments</h1>
+            <p>Manage and track your doctor appointments.</p>
+        </div>
+
+        <!-- APPOINTMENT SUMMARY -->
+        <section class="appointment-stats">
+
+            <div class="appointment-stat">
+                <div class="appointment-stat-icon blue">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <div>
+                    <p>Total Appointments</p>
+                    <h2>12</h2>
+                </div>
+            </div>
+
+            <div class="appointment-stat">
+                <div class="appointment-stat-icon green">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <div>
+                    <p>Upcoming</p>
+                    <h2>2</h2>
+                </div>
+            </div>
+
+            <div class="appointment-stat">
+                <div class="appointment-stat-icon purple">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <div>
+                    <p>Completed</p>
+                    <h2>8</h2>
+                </div>
+            </div>
+
+            <div class="appointment-stat">
+                <div class="appointment-stat-icon pink">
+                    <i class="fa-solid fa-ban"></i>
+                </div>
+                <div>
+                    <p>Cancelled</p>
+                    <h2>2</h2>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- FILTER TABS -->
+        <section class="appointment-panel">
+
+            <div class="appointment-toolbar">
+                <div class="appointment-tabs">
+                    <button class="appointment-tab active"
+                            data-filter="all">
+                        All
+                    </button>
+
+                    <button class="appointment-tab"
+                            data-filter="upcoming">
+                        Upcoming
+                    </button>
+
+                    <button class="appointment-tab"
+                            data-filter="completed">
+                        Completed
+                    </button>
+
+                    <button class="appointment-tab"
+                            data-filter="cancelled">
+                        Cancelled
+                    </button>
+                </div>
+
+                <a href="doctor.html" class="new-appointment-btn">
+                    <i class="fa-solid fa-plus"></i>
+                    Book Appointment
+                </a>
+            </div>
+
+            <!-- APPOINTMENT 1 -->
+            <div class="appointment-list-card"
+                 data-status="upcoming">
+
+                <div class="appointment-doctor">
+                    <img src="https://i.pravatar.cc/120?img=47"
+                         alt="Doctor">
+
+                    <div>
+                        <h3>Dr. Priya Sharma</h3>
+                        <p class="specialization">General Physician</p>
+
+                        <div class="appointment-rating">
+                            <i class="fa-solid fa-star"></i>
+                            4.8 <span>(120 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="appointment-date">
+                    <p><i class="fa-regular fa-calendar"></i>
+                        28 Nov 2026</p>
+                    <p><i class="fa-regular fa-clock"></i>
+                        10:00 AM</p>
+                    <p><i class="fa-solid fa-location-dot"></i>
+                        Kozhikode</p>
+                </div>
+
+                <div class="appointment-card-actions">
+                    <span class="status upcoming">Upcoming</span>
+
+                    <button class="appointment-view-btn"
+                            onclick="viewAppointmentDetails('Dr. Priya Sharma')">
+                        View Details
+                    </button>
+
+                    <button class="cancel-appointment-btn"
+                            onclick="cancelAppointment(this)">
+                        Cancel
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- APPOINTMENT 2 -->
+            <div class="appointment-list-card"
+                 data-status="upcoming">
+
+                <div class="appointment-doctor">
+                    <img src="https://i.pravatar.cc/120?img=12"
+                         alt="Doctor">
+
+                    <div>
+                        <h3>Dr. Rahul Mehta</h3>
+                        <p class="specialization">Cardiologist</p>
+
+                        <div class="appointment-rating">
+                            <i class="fa-solid fa-star"></i>
+                            4.9 <span>(95 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="appointment-date">
+                    <p><i class="fa-regular fa-calendar"></i>
+                        02 Dec 2026</p>
+                    <p><i class="fa-regular fa-clock"></i>
+                        11:30 AM</p>
+                    <p><i class="fa-solid fa-location-dot"></i>
+                        Kochi</p>
+                </div>
+
+                <div class="appointment-card-actions">
+                    <span class="status upcoming">Upcoming</span>
+
+                    <button class="appointment-view-btn"
+                            onclick="viewAppointmentDetails('Dr. Rahul Mehta')">
+                        View Details
+                    </button>
+
+                    <button class="cancel-appointment-btn"
+                            onclick="cancelAppointment(this)">
+                        Cancel
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- APPOINTMENT 3 -->
+            <div class="appointment-list-card"
+                 data-status="completed">
+
+                <div class="appointment-doctor">
+                    <img src="https://i.pravatar.cc/120?img=32"
+                         alt="Doctor">
+
+                    <div>
+                        <h3>Dr. Anjali Nair</h3>
+                        <p class="specialization">Dermatologist</p>
+
+                        <div class="appointment-rating">
+                            <i class="fa-solid fa-star"></i>
+                            4.7 <span>(85 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="appointment-date">
+                    <p><i class="fa-regular fa-calendar"></i>
+                        18 Nov 2026</p>
+                    <p><i class="fa-regular fa-clock"></i>
+                        02:00 PM</p>
+                    <p><i class="fa-solid fa-location-dot"></i>
+                        Kannur</p>
+                </div>
+
+                <div class="appointment-card-actions">
+                    <span class="status completed">Completed</span>
+
+                    <button class="appointment-view-btn"
+                            onclick="viewAppointmentDetails('Dr. Anjali Nair')">
+                        View Details
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- APPOINTMENT 4 -->
+            <div class="appointment-list-card"
+                 data-status="cancelled">
+
+                <div class="appointment-doctor">
+                    <img src="https://i.pravatar.cc/120?img=44"
+                         alt="Doctor">
+
+                    <div>
+                        <h3>Dr. Arjun Kumar</h3>
+                        <p class="specialization">Pediatrician</p>
+
+                        <div class="appointment-rating">
+                            <i class="fa-solid fa-star"></i>
+                            4.6 <span>(70 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="appointment-date">
+                    <p><i class="fa-regular fa-calendar"></i>
+                        15 Nov 2026</p>
+                    <p><i class="fa-regular fa-clock"></i>
+                        09:30 AM</p>
+                    <p><i class="fa-solid fa-location-dot"></i>
+                        Kozhikode</p>
+                </div>
+
+                <div class="appointment-card-actions">
+                    <span class="status cancelled">Cancelled</span>
+
+                    <button class="appointment-view-btn"
+                            onclick="viewAppointmentDetails('Dr. Arjun Kumar')">
+                        View Details
+                    </button>
+                </div>
+
+            </div>
+
+            <p class="no-appointments" id="noAppointments">
+                No appointments found.
+            </p>
+
+        </section>
+
+    </main>
+</div>
+
+<script src="../static/js/script.js"></script>
+<script src="../static/js/appointment.js"></script>
+
+</body>
+</html>

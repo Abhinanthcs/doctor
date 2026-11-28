@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard | HealthCare+</title>
+
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-heart-pulse"></i>
+            <h2>HealthCare+</h2>
+            <p>Care Today, Health Forever</p>
+        </div>
+
+        <nav class="nav-menu">
+            <a class="active" href="dashboard.html">
+                <i class="fa-solid fa-house"></i> Dashboard
+            </a>
+
+            <a href="doctor.html">
+                <i class="fa-solid fa-stethoscope"></i> Find Doctors
+            </a>
+
+            <a href="appointment.html">
+                <i class="fa-solid fa-calendar-days"></i> My Appointments
+            </a>
+
+            <a href="prescription.html">
+                <i class="fa-solid fa-pills"></i> My Prescriptions
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-file-lines"></i> Medical History
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-user"></i> My Profile
+            </a>
+
+            <a href="#">
+                <i class="fa-solid fa-gear"></i> Settings
+            </a>
+
+            <a href="#" class="logout">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        </nav>
+
+        <div class="sidebar-doctor">
+            <img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png"
+                 alt="Doctor illustration">
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search doctors...">
+            </div>
+
+            <div class="topbar-right">
+                <div class="notification">
+                    <i class="fa-regular fa-bell"></i>
+                    <span>2</span>
+                </div>
+
+                <div class="user-profile">
+                    <img src="https://i.pravatar.cc/100?img=12"
+                         alt="User profile">
+                    <span>John Doe</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- WELCOME BANNER -->
+        <section class="welcome-banner">
+            <div class="welcome-text">
+                <h1>Good morning, John! <span>👋</span></h1>
+
+                <p>
+                    Manage your healthcare and appointments
+                    <br>in one place.
+                </p>
+
+                <a href="appointment.html" class="banner-btn">
+                    Book an Appointment
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- STATISTICS -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
+                <div>
+                    <p>Total Appointments</p>
+                    <h2>12</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+                <div>
+                    <p>Upcoming Appointments</p>
+                    <h2>2</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon purple">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <div>
+                    <p>Completed Visits</p>
+                    <h2>8</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon pink">
+                    <i class="fa-solid fa-pills"></i>
+                </div>
+                <div>
+                    <p>Prescriptions</p>
+                    <h2>5</h2>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- MIDDLE SECTION -->
+        <section class="middle-grid">
+
+            <!-- UPCOMING APPOINTMENT -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>
+                        <i class="fa-solid fa-calendar-days"></i>
+                        Upcoming Appointment
+                    </h3>
+
+                    <a href="appointment.html">View All →</a>
+                </div>
+
+                <div class="appointment-content">
+
+                    <div class="doctor-info">
+                        <img src="https://i.pravatar.cc/120?img=47"
+                             alt="Doctor">
+
+                        <div>
+                            <h3>Dr. Priya Sharma</h3>
+                            <p>General Physician</p>
+                            <span class="rating">★ 4.8 (120 reviews)</span>
+                        </div>
+                    </div>
+
+                    <div class="appointment-details">
+                        <p>
+                            <i class="fa-regular fa-calendar"></i>
+                            28 Nov 2026
+                        </p>
+
+                        <p>
+                            <i class="fa-regular fa-clock"></i>
+                            10:00 AM
+                        </p>
+
+                        <span class="status upcoming">Upcoming</span>
+                    </div>
+
+                </div>
+
+                <button class="details-btn" onclick="viewAppointment()">
+                    <i class="fa-solid fa-video"></i>
+                    View Details
+                </button>
+            </div>
+
+            <!-- RECENT PRESCRIPTION -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>
+                        <i class="fa-solid fa-pills"></i>
+                        Recent Prescriptions
+                    </h3>
+
+                    <a href="prescription.html">View All →</a>
+                </div>
+
+                <div class="prescription-card">
+                    <div class="prescription-image">
+                        <i class="fa-solid fa-file-medical"></i>
+                    </div>
+
+                    <div class="prescription-info">
+                        <h3>Dr. Rahul Sharma</h3>
+                        <p>
+                            <i class="fa-regular fa-calendar"></i>
+                            28 Nov 2026
+                        </p>
+                    </div>
+
+                    <span class="status completed">Completed</span>
+                </div>
+
+                <div class="prescription-description">
+                    <p><strong>Diagnosis:</strong> Common Cold</p>
+                    <p><strong>Medicines:</strong> Paracetamol, Cetirizine</p>
+                </div>
+
+                <button class="download-btn"
+                        onclick="downloadPrescription()">
+                    <i class="fa-solid fa-download"></i>
+                    Download
+                </button>
+            </div>
+
+        </section>
+
+        <!-- BOTTOM SECTION -->
+        <section class="bottom-grid">
+
+            <!-- QUICK ACTIONS -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>
+                        <i class="fa-solid fa-bolt"></i>
+                        Quick Actions
+                    </h3>
+                </div>
+
+                <div class="quick-actions">
+
+                    <a href="doctor.html" class="action-card teal">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <div>
+                            <h4>Find Doctors</h4>
+                            <p>Search & book</p>
+                        </div>
+                    </a>
+
+                    <a href="appointment.html" class="action-card blue-bg">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <div>
+                            <h4>Book Appointment</h4>
+                            <p>Select time slot</p>
+                        </div>
+                    </a>
+
+                    <a href="prescription.html" class="action-card purple-bg">
+                        <i class="fa-solid fa-file-lines"></i>
+                        <div>
+                            <h4>View Prescriptions</h4>
+                            <p>Access your records</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="action-card orange-bg">
+                        <i class="fa-solid fa-folder-plus"></i>
+                        <div>
+                            <h4>View Medical History</h4>
+                            <p>Check your history</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- RECENT ACTIVITY -->
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        Recent Activity
+                    </h3>
+
+                    <a href="#">View All →</a>
+                </div>
+
+                <div class="activity-list">
+
+                    <div class="activity-item">
+                        <div class="activity-icon green">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+
+                        <div class="activity-text">
+                            <h4>Appointment Booked with Dr. Priya Sharma</h4>
+                            <p>24 Nov 2026 · 02:30 PM</p>
+                        </div>
+
+                        <span class="status upcoming">Upcoming</span>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon blue">
+                            <i class="fa-solid fa-pills"></i>
+                        </div>
+
+                        <div class="activity-text">
+                            <h4>Prescription Received from Dr. Rahul Sharma</h4>
+                            <p>20 Nov 2026</p>
+                        </div>
+
+                        <button class="view-btn" onclick="viewPrescription()">
+                            View
+                        </button>
+                    </div>
+
+                    <div class="activity-item">
+                        <div class="activity-icon green">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+
+                        <div class="activity-text">
+                            <h4>Appointment Completed with Dr. Mehta</h4>
+                            <p>18 Nov 2026</p>
+                        </div>
+
+                        <span class="status completed">Completed</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+<script src="../static/js/script.js"></script>
+</body>
+</html>
